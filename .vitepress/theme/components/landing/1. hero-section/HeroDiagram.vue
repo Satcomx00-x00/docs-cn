@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { MotionPathPlugin } from 'gsap/dist/MotionPathPlugin'
-import { onMounted, onUnmounted, Ref, ref } from 'vue'
+import { onMounted, onUnmounted, type Ref, ref } from 'vue'
 import SvgInputs from './svg-elements/SvgInputs.vue'
 import SvgOutputs from './svg-elements/SvgOutputs.vue'
 import SvgBlueIndicator from './svg-elements/SvgBlueIndicator.vue'
 import SvgPinkIndicator from './svg-elements/SvgPinkIndicator.vue'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { SvgNodeProps } from '../common/SvgNode.vue'
+import type { SvgNodeProps } from '../common/SvgNode.vue'
 
 gsap.registerPlugin(MotionPathPlugin)
 
@@ -29,8 +29,8 @@ const inputLines: Ref<SvgNodeProps>[] = inputPaths.map((path) =>
     visible: false,
     labelVisible: false,
     label: '',
-    dotColor: null,
-    glowColor: null,
+    dotColor: undefined,
+    glowColor: undefined,
     path,
   }),
 )
@@ -127,10 +127,10 @@ const animateDiagram = () => {
 
   // Animate the input nodes/lines
   prepareInputs().forEach((lineIndex, fileIndex) => {
-    timeline.add(
+    timeline!.add(
       isMobile
-        ? animateSingleInputMobile(inputLines[lineIndex as number])
-        : animateSingleInputDesktop(inputLines[lineIndex as number]),
+        ? animateSingleInputMobile(inputLines[lineIndex])
+        : animateSingleInputDesktop(inputLines[lineIndex]),
       fileIndex * (isMobile ? 0.4 : 0.2),
     )
   })
@@ -143,7 +143,7 @@ const animateDiagram = () => {
   // Animate the output nodes/lines
   timeline.addLabel('showOutput', '<')
   outputLines.forEach((outputLine, index) => {
-    timeline.add(
+    timeline!.add(
       isMobile
         ? animateSingleOutputMobile(outputLine)
         : animateSingleOutputDesktop(outputLine, index),
@@ -171,7 +171,7 @@ const prepareInputs = () => {
     inputFileSets.value[Math.floor(Math.random() * inputFileSets.value.length)]
 
   // Choose enough unique lines for the input file nodes to slide along
-  const inputLineIndexes = new Set()
+  const inputLineIndexes = new Set<number>()
   while (inputLineIndexes.size < 3) {
     const index: number = Math.floor(Math.random() * inputLines.length)
     inputLineIndexes.add(index)
@@ -180,10 +180,10 @@ const prepareInputs = () => {
   // Assign each line it's appropriate node label
   const inputs = [...inputLineIndexes]
   inputs.forEach((lineIndex, fileIndex) => {
-    inputLines[lineIndex as number].value.label = inputFileSet[fileIndex].label
-    inputLines[lineIndex as number].value.dotColor = inputLines[
-      lineIndex as number
-    ].value.glowColor = inputFileSet[fileIndex].color as string | null
+    inputLines[lineIndex].value.label = inputFileSet[fileIndex].label
+    inputLines[lineIndex].value.dotColor = inputLines[
+      lineIndex
+    ].value.glowColor = inputFileSet[fileIndex].color
   })
   return inputs
 }
@@ -447,6 +447,12 @@ const isChromiumBrowser = ref(false)
 onMounted(() => {
   isChromiumBrowser.value = 'chrome' in window
 })
+
+// Check for uwu query
+const isUwu = ref(false)
+onMounted(() => {
+  isUwu.value = location.search.includes('?uwu')
+})
 </script>
 
 <template>
@@ -470,7 +476,16 @@ onMounted(() => {
         <div class="vite-chip__edge" :class="{ 'edge--animated': isChromiumBrowser }"></div>
       </div>
       <div class="vite-chip__filter" />
+<<<<<<< HEAD
       <img src="/icons/android-chrome-192x192.png" alt="Logo" class="vite-chip__logo" />
+=======
+      <img
+        :src="isUwu ? '/logo-uwu.webp' : '/logo.svg'"
+        :alt="isUwu ? 'Vite Kawaii Logo by @icarusgkx' : 'Vite Logo'"
+        class="vite-chip__logo"
+        :class="{ uwu: isUwu }"
+      />
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
     </div>
   </div>
 
@@ -516,7 +531,13 @@ onMounted(() => {
     bottom: 0;
     transform: translate3d(0, 0, 0) scale(1);
     transition: transform 0.3s ease-in-out;
+<<<<<<< HEAD
     background: linear-gradient(130deg,
+=======
+    background:
+      linear-gradient(
+        130deg,
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
         rgba(61, 61, 61, 0.3) 0%,
         rgba(61, 61, 61, 0) 40%),
       linear-gradient(130deg,
@@ -634,6 +655,10 @@ onMounted(() => {
     z-index: 3;
   }
 
+  .uwu.vite-chip__logo {
+    width: 134px;
+  }
+
   &.active {
     box-shadow: 0 30px 35px -10px rgba(0, 0, 0, 0.6);
     transform: translate3d(0, 0, 0) scale(1);
@@ -694,6 +719,7 @@ onMounted(() => {
     opacity: 0.1;
   }
 
+<<<<<<< HEAD
   background: url('/noise.png'),
   radial-gradient(circle at right center,
     rgb(86, 50, 119) 0%,
@@ -701,13 +727,33 @@ onMounted(() => {
     rgb(65, 114, 194) 55%,
     rgba(50, 81, 115, 0.5) 100%);
   mask-image: radial-gradient(ellipse 300% 30% at center center,
+=======
+  background:
+    url('../common/noise.webp'),
+    radial-gradient(
+      circle at right center,
+      rgb(86, 50, 119) 0%,
+      rgba(74, 55, 140, 1) 30%,
+      rgb(65, 114, 194) 55%,
+      rgba(50, 81, 115, 0.5) 100%
+    );
+  mask-image: radial-gradient(
+    ellipse 300% 30% at center center,
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
     rgba(0, 0, 0, 1) 20%,
     rgba(0, 0, 0, 0.5) 50%,
     rgba(0, 0, 0, 0) 100%);
 
   @media (min-width: 1024px) {
+<<<<<<< HEAD
     background: url('/noise.png'),
       radial-gradient(circle at right center,
+=======
+    background:
+      url('../common/noise.webp'),
+      radial-gradient(
+        circle at right center,
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
         rgba(75, 41, 105, 0.5) 0%,
         rgb(86, 50, 119) 25%,
         rgba(74, 55, 140, 1) 40%,
@@ -720,8 +766,15 @@ onMounted(() => {
   }
 
   @media (min-width: 1500px) {
+<<<<<<< HEAD
     background: url('/noise.png'),
       radial-gradient(circle at right center,
+=======
+    background:
+      url('../common/noise.webp'),
+      radial-gradient(
+        circle at right center,
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
         rgba(75, 41, 105, 0.5) 0%,
         rgb(86, 50, 119) 25%,
         rgba(74, 55, 140, 1) 45%,
@@ -734,8 +787,15 @@ onMounted(() => {
   }
 
   @media (min-width: 1800px) {
+<<<<<<< HEAD
     background: url('/noise.png'),
       radial-gradient(circle at right center,
+=======
+    background:
+      url('../common/noise.webp'),
+      radial-gradient(
+        circle at right center,
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
         rgba(75, 41, 105, 0.5) 0%,
         rgb(86, 50, 119) 25%,
         rgba(74, 55, 140, 1) 50%,

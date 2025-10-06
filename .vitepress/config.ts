@@ -1,10 +1,20 @@
+<<<<<<< HEAD
 import type { DefaultTheme } from 'vitepress'
 import { defineConfig, createContentLoader } from 'vitepress'
+=======
+import path from 'node:path'
+import fs from 'node:fs'
+import type { DefaultTheme, HeadConfig } from 'vitepress'
+import { defineConfig } from 'vitepress'
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
 import {
   groupIconMdPlugin,
   groupIconVitePlugin
 } from 'vitepress-plugin-group-icons'
+import llmstxt from 'vitepress-plugin-llms'
+import type { PluginOption } from 'vite'
+import { markdownItImageSize } from 'markdown-it-image-size'
 import { buildEnd } from './buildEnd.config'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import { joinURL, withoutTrailingSlash } from 'ufo'
@@ -43,6 +53,32 @@ const additionalTitle = ((): string => {
       return ''
   }
 })()
+<<<<<<< HEAD
+=======
+const versionLinks = ((): DefaultTheme.NavItemWithLink[] => {
+  const oldVersions: DefaultTheme.NavItemWithLink[] = [
+    {
+      text: 'Vite 6 Docs',
+      link: 'https://v6.vite.dev',
+    },
+    {
+      text: 'Vite 5 Docs',
+      link: 'https://v5.vite.dev',
+    },
+    {
+      text: 'Vite 4 Docs',
+      link: 'https://v4.vite.dev',
+    },
+    {
+      text: 'Vite 3 Docs',
+      link: 'https://v3.vite.dev',
+    },
+    {
+      text: 'Vite 2 Docs',
+      link: 'https://v2.vite.dev',
+    },
+  ]
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
 
 export default withMermaid(
   defineConfig({
@@ -121,6 +157,7 @@ export default withMermaid(
       [
         'link',
         {
+<<<<<<< HEAD
           rel: 'preconnect',
           href: 'https://fonts.gstatic.com',
           crossorigin: 'true'
@@ -252,6 +289,39 @@ export default withMermaid(
         }
       `],
       // ...existing code...
+=======
+          text: 'Vite 7 Docs (release)',
+          link: 'https://vite.dev',
+        },
+        ...oldVersions,
+      ]
+    case 'release':
+      return oldVersions
+  }
+})()
+
+function inlineScript(file: string): HeadConfig {
+  return [
+    'script',
+    {},
+    fs.readFileSync(
+      path.resolve(__dirname, `./inlined-scripts/${file}`),
+      'utf-8',
+    ),
+  ]
+}
+
+export default defineConfig({
+  title: 'Vite 官方中文文档',
+  description: '下一代前端工具链',
+  lang: 'zh-CN',
+
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
+    [
+      'link',
+      { rel: 'alternate', type: 'application/rss+xml', href: '/blog.rss' },
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
     ],
 
     themeConfig: {
@@ -266,6 +336,7 @@ export default withMermaid(
         label: 'On this page',
         level: [2, 3]
       },
+<<<<<<< HEAD
 
       search: {
         provider: 'algolia',
@@ -315,9 +386,88 @@ export default withMermaid(
                 reportMissingResultsLinkText: 'Let us know'
               }
             }
+=======
+    ],
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600&family=IBM+Plex+Mono:wght@400&display=swap',
+      },
+    ],
+    inlineScript('banner.js'),
+    ['link', { rel: 'me', href: 'https://m.webtoo.ls/@vite' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: ogTitle }],
+    ['meta', { property: 'og:image', content: ogImage }],
+    ['meta', { property: 'og:url', content: ogUrl }],
+    ['meta', { property: 'og:description', content: ogDescription }],
+    ['meta', { property: 'og:site_name', content: 'vitejs' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:site', content: '@vite_js' }],
+    ['meta', { name: 'theme-color', content: '#646cff' }],
+    [
+      'script',
+      {
+        src: 'https://cdn.usefathom.com/script.js',
+        'data-site': 'TPLGJZGR',
+        'data-spa': 'auto',
+        defer: '',
+      },
+    ],
+  ],
+
+  locales: {
+    root: { label: '简体中文' },
+    en: { label: 'English', link: 'https://vite.dev' },
+    ja: { label: '日本語', link: 'https://ja.vite.dev' },
+    es: { label: 'Español', link: 'https://es.vite.dev' },
+    pt: { label: 'Português', link: 'https://pt.vite.dev' },
+    ko: { label: '한국어', link: 'https://ko.vite.dev' },
+    de: { label: 'Deutsch', link: 'https://de.vite.dev' },
+    fa: { label: 'فارسی', link: 'https://fa.vite.dev' },
+  },
+
+  themeConfig: {
+    logo: '/logo.svg',
+
+    editLink: {
+      pattern: 'https://github.com/vitejs/docs-cn/edit/main/:path',
+      text: '为此页提供修改建议',
+    },
+
+    outline: {
+      label: '本页目录',
+      level: [2, 3],
+    },
+
+    socialLinks: [
+      { icon: 'bluesky', link: 'https://bsky.app/profile/vite.dev' },
+      { icon: 'mastodon', link: 'https://elk.zone/m.webtoo.ls/@vite' },
+      { icon: 'x', link: 'https://x.com/vite_js' },
+      { icon: 'discord', link: 'https://chat.vite.dev' },
+      { icon: 'github', link: 'https://github.com/vitejs/vite' },
+    ],
+
+    search: {
+      provider: 'local',
+      options: {
+        translations: {
+          button: {
+            buttonText: '搜索',
+            buttonAriaLabel: '搜索'
+          },
+          modal: {
+            footer: {
+              selectText: '选择',
+              navigateText: '切换',
+              closeText: '关闭',
+            },
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
           }
         }
       },
+<<<<<<< HEAD
 
       docFooter: {
         prev: 'Previous page',
@@ -346,6 +496,17 @@ export default withMermaid(
 
       sidebar: {
         '/Documentations/Infrastructure/': [
+=======
+      { text: '指引', link: '/guide/', activeMatch: '/guide/' },
+      { text: '配置', link: '/config/', activeMatch: '/config/' },
+      { text: '插件', link: '/plugins/', activeMatch: '/plugins/' },
+      {
+        text: '相关链接',
+        items: [
+          { text: '团队成员', link: '/team' },
+          { text: '最新博客', link: '/blog' },
+          { text: '发布策略', link: '/releases' },
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
           {
             text: 'Infrastructure',
             items: [
@@ -455,6 +616,7 @@ export default withMermaid(
         ],
         '/Documentations/CyberSec/': [
           {
+<<<<<<< HEAD
             text: 'CyberSec',
             items: [
               {
@@ -495,6 +657,19 @@ export default withMermaid(
           }
         ],
         '/Documentations/CICD/': [
+=======
+            text: 'Vite v6 文档（英文）',
+            link: 'https://v6.vite.dev'
+          },
+          {
+            text: 'Vite v5 文档（英文）',
+            link: 'https://v5.vite.dev'
+          },
+          {
+            text: 'Vite v4 文档（英文）',
+            link: 'https://v4.vite.dev'
+          },
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
           {
             text: 'CI/CD',
             items: [
@@ -697,6 +872,7 @@ export default withMermaid(
       // Initialize head array if it doesn't exist
       pageData.frontmatter.head ??= []
 
+<<<<<<< HEAD
       // Keyword aliases for SEO
       const keywordAliases: Record<string, string[]> = {
         'fail2ban': ['fail2ban configuration', 'fail2ban config'],
@@ -834,6 +1010,257 @@ export default withMermaid(
             '.gitlab-ci.yml': 'vscode-icons:file-type-gitlab'
           }
         })
+=======
+    sidebar: {
+      '/guide/': [
+        {
+          text: '介绍',
+          items: [
+            {
+              text: '开始',
+              link: '/guide/',
+            },
+            {
+              text: '理念',
+              link: '/guide/philosophy',
+            },
+            {
+              text: '为什么选 Vite',
+              link: '/guide/why',
+            },
+          ],
+        },
+        {
+          text: '指引',
+          items: [
+            {
+              text: '功能',
+              link: '/guide/features',
+            },
+            {
+              text: '命令行接口',
+              link: '/guide/cli'
+            },
+            {
+              text: '使用插件',
+              link: '/guide/using-plugins'
+            },
+            {
+              text: '依赖预构建',
+              link: '/guide/dep-pre-bundling'
+            },
+            {
+              text: '静态资源处理',
+              link: '/guide/assets'
+            },
+            {
+              text: '构建生产版本',
+              link: '/guide/build'
+            },
+            {
+              text: '部署静态站点',
+              link: '/guide/static-deploy'
+            },
+            {
+              text: '环境变量与模式',
+              link: '/guide/env-and-mode'
+            },
+            {
+              text: '服务端渲染（SSR）',
+              link: '/guide/ssr'
+            },
+            {
+              text: '后端集成',
+              link: '/guide/backend-integration'
+            },
+            {
+              text: '故障排除',
+              link: '/guide/troubleshooting',
+            },
+            {
+              text: '性能',
+              link: '/guide/performance',
+            },
+            {
+              text: 'Rolldown',
+              link: '/guide/rolldown',
+            },
+            {
+              text: '从 v6 迁移',
+              link: '/guide/migration',
+            },
+            {
+              text: '破坏性变更',
+              link: '/changes/',
+            },
+          ],
+        },
+        {
+          text: 'API',
+          items: [
+            {
+              text: '插件 API',
+              link: '/guide/api-plugin'
+            },
+            {
+              text: 'HMR API',
+              link: '/guide/api-hmr',
+            },
+            {
+              text: 'JavaScript API',
+              link: '/guide/api-javascript',
+            },
+            {
+              text: '配置参考',
+              link: '/config/',
+            },
+          ],
+        },
+        {
+          text: '环境 API',
+          items: [
+            {
+              text: '介绍',
+              link: '/guide/api-environment',
+            },
+            {
+              text: '环境实例',
+              link: '/guide/api-environment-instances',
+            },
+            {
+              text: '插件',
+              link: '/guide/api-environment-plugins',
+            },
+            {
+              text: '框架',
+              link: '/guide/api-environment-frameworks',
+            },
+            {
+              text: '运行时',
+              link: '/guide/api-environment-runtimes',
+            },
+          ],
+        },
+      ],
+      '/config/': [
+        {
+          text: '配置',
+          items: [
+            {
+              text: '配置 Vite',
+              link: '/config/'
+            },
+            {
+              text: '共享选项',
+              link: '/config/shared-options'
+            },
+            {
+              text: '服务器选项',
+              link: '/config/server-options'
+            },
+            {
+              text: '构建选项',
+              link: '/config/build-options'
+            },
+            {
+              text: '预览选项',
+              link: '/config/preview-options'
+            },
+            {
+              text: '依赖优化选项',
+              link: '/config/dep-optimization-options'
+            },
+            {
+              text: 'SSR 选项',
+              link: '/config/ssr-options'
+            },
+            {
+              text: 'Worker 选项',
+              link: '/config/worker-options',
+            },
+          ],
+        },
+      ],
+      '/changes/': [
+        {
+          text: '破坏性变更',
+          link: '/changes/',
+        },
+        {
+          text: '现在',
+          items: [],
+        },
+        {
+          text: '未来',
+          items: [
+            {
+              text: '钩子函数中的 this.environment',
+              link: '/changes/this-environment-in-hooks',
+            },
+            {
+              text: 'HMR hotUpdate 插件钩子',
+              link: '/changes/hotupdate-hook',
+            },
+            {
+              text: '迁移到基于环境的API',
+              link: '/changes/per-environment-apis',
+            },
+            {
+              text: '使用 ModuleRunner API 进行服务端渲染',
+              link: '/changes/ssr-using-modulerunner',
+            },
+            {
+              text: '构建过程中的共享插件',
+              link: '/changes/shared-plugins-during-build',
+            },
+          ],
+        },
+        {
+          text: '过去',
+          items: [],
+        },
+      ],
+    },
+  },
+  transformPageData(pageData) {
+    const canonicalUrl = `${ogUrl}/${pageData.relativePath}`
+      .replace(/\/index\.md$/, '/')
+      .replace(/\.md$/, '')
+    pageData.frontmatter.head ??= []
+    pageData.frontmatter.head.unshift(
+      ['link', { rel: 'canonical', href: canonicalUrl }],
+      ['meta', { property: 'og:title', content: pageData.title }],
+    )
+    return pageData
+  },
+  markdown: {
+    // languages used for twoslash and jsdocs in twoslash
+    languages: ['ts', 'js', 'json'],
+    codeTransformers: [transformerTwoslash()],
+    config(md) {
+      md.use(groupIconMdPlugin)
+      md.use(markdownItImageSize, {
+        publicDir: path.resolve(import.meta.dirname, '../public'),
+      })
+    },
+  },
+  vite: {
+    plugins: [
+      // @ts-ignore
+      groupIconVitePlugin({
+        customIcon: {
+          firebase: 'vscode-icons:file-type-firebase',
+          '.gitlab-ci.yml': 'vscode-icons:file-type-gitlab',
+        },
+      }),
+    ],
+    optimizeDeps: {
+      include: [
+        '@shikijs/vitepress-twoslash/client',
+        'gsap',
+        'gsap/dist/ScrollTrigger',
+        'gsap/dist/MotionPathPlugin',
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
       ],
       optimizeDeps: {
         include: [

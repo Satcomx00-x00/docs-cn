@@ -15,6 +15,7 @@ export const buildEnd = async (config: SiteConfig): Promise<void> => {
     id: blogUrl,
     link: blogUrl,
     language: 'en',
+<<<<<<< HEAD
     image: `${siteUrl}/icons/android-chrome-512x512.png`,
     favicon: `${siteUrl}/icons/favicon.ico`,
     copyright: 'Copyright © 2024-Now - Satcom',
@@ -29,6 +30,11 @@ export const buildEnd = async (config: SiteConfig): Promise<void> => {
       email: 'contact@devsecforge.io',
       link: siteUrl,
     },
+=======
+    image: 'https://vite.dev/og-image.jpg',
+    favicon: 'https://vite.dev/logo.svg',
+    copyright: 'Copyright © 2019-present VoidZero Inc. & Vite Contributors',
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
   })
 
   const posts = await createContentLoader('blog/*.md', {

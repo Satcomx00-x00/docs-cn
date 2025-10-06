@@ -1,33 +1,49 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { VPDocAsideSponsors } from 'vitepress/theme'
-import { useSponsor } from '../composables/sponsor'
+import { useSponsor, voidZero } from '../composables/sponsor'
 
 const { data } = useSponsor()
 
 const sponsors = computed(() => {
-  return (
-    data?.value.map((sponsor) => {
+  return [
+    { size: 'small', items: [voidZero] },
+    ...(data.value?.map((sponsor) => {
       return {
         size: sponsor.size === 'big' ? 'mini' : 'xmini',
         items: sponsor.items,
       }
-    }) ?? []
-  )
+    }) ?? []),
+  ]
 })
 </script>
 
 <template>
   <a
     class="viteconf"
+<<<<<<< HEAD
     href="https://devsecforge.io/"
+=======
+    href="https://viteconf.org/?utm=vite-sidebar"
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
     target="_blank"
   >
-    <img width="22" height="22" src="/viteconf.svg" alt="ViteConf Logo" />
+    <img
+      width="22"
+      height="22"
+      src="../../../images/viteconf.svg"
+      alt="ViteConf Logo"
+    />
     <span>
+<<<<<<< HEAD
       <p class="extra-info">Learn !</p>
       <p class="heading">Satcom /x00</p>
       <p class="extra-info">'til your brain explodes</p>
+=======
+      <p class="extra-info">Building Together</p>
+      <p class="heading">ViteConf 2025</p>
+      <p class="extra-info">First time in-person!</p>
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
     </span>
   </a>
   <VPDocAsideSponsors v-if="data" :data="sponsors" />

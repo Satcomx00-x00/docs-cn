@@ -1,10 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import HeroDiagram from './HeroDiagram.vue'
 </script>
 
 <template>
   <div class="hero">
     <div class="container">
+<<<<<<< HEAD
       <!-- ViteConf Replay Button -->
       <a href="https://devsecforge.io/Infrastructure/Docker/Docker" class="hero__pill" target="_blank">
         <img src="/icons/android-chrome-192x192.png" alt="" width="20" height="20" />
@@ -17,6 +18,28 @@ import HeroDiagram from './HeroDiagram.vue'
       <h3>
         🔐 Cybersecurity, CI/CD, and infrastructure guides<br />
         <span class="highlight">Resources for developers and security pros</span> 📚
+=======
+      <!-- ViteConf 2025 Button -->
+      <a
+        href="https://viteconf.org/?utm=vite"
+        class="hero__pill"
+        target="_blank"
+      >
+        <img
+          src="../../../../../images/viteconf.svg"
+          alt="Viteconf logo"
+          width="20"
+          height="20"
+        />
+        <span>ViteConf 2025</span>
+      </a>
+
+      <!-- Heading -->
+      <h1>卓越的 Web 开发<br />构建工具</h1>
+      <!-- Tagline -->
+      <h3>
+        Vite 是一个超快的前端构建工具 <br> 赋能下一代 Web 应用的发展
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
       </h3>
 
       <!-- Technology Badges -->
@@ -49,7 +72,19 @@ import HeroDiagram from './HeroDiagram.vue'
 
       <!-- CTA Buttons -->
       <div class="hero__actions">
+<<<<<<< HEAD
         <a href="/Infrastructure/" class="btn btn--primary">📚 Browse Guides</a>
+=======
+        <a href="/guide/" class="btn btn--primary">开始</a>
+        <a
+          href="https://github.com/vitejs/vite"
+          target="_blank"
+          class="btn btn--outline"
+        >
+          <img src="./github.svg" alt="GitHub logo" width="20" height="20" />
+          GitHub
+        </a>
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
       </div>
     </div>
 

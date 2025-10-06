@@ -77,7 +77,6 @@ parentServer.use(vite.middlewares)
 `InlineConfig` 接口扩展了 `UserConfig` 并添加了以下属性：
 
 - `configFile`：指明要使用的配置文件。如果没有设置，Vite 将尝试从项目根目录自动解析。设置为 `false` 可以禁用自动解析功能。
-- `envFile`：设置为 `false` 时，则禁用 `.env` 文件。
 
 ## `ResolvedConfig` {#resolvedconfig}
 
@@ -109,8 +108,8 @@ interface ViteDevServer {
   httpServer: http.Server | null
   /**
    * chokidar 监听器实例。如果 `config.server.watch` 被设置为 `null`，
-   * 它不会监听任何文件，并且调用 `add` 将不起作用。
-   * https://github.com/paulmillr/chokidar#getting-started
+   * 它不会监听任何文件，并且调用 `add` 或 `unwatch` 将不起作用。
+   * https://github.com/paulmillr/chokidar/tree/3.6.0#api
    */
   watcher: FSWatcher
   /**

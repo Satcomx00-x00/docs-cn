@@ -1,5 +1,5 @@
-<script setup>
-import { useSponsor } from '../../../composables/sponsor'
+<script setup lang="ts">
+import { useSponsor, voidZero } from '../../../composables/sponsor'
 import { VPSponsors } from 'vitepress/theme'
 
 const { data } = useSponsor()
@@ -41,17 +41,34 @@ const { data } = useSponsor()
     <!-- Title Section -->
     <img
       class="icon-heart"
+<<<<<<< HEAD
       src="/tech-stack.svg"
       alt="Our Technology Stack"
+=======
+      src="./heart.svg"
+      alt="Vite is made possible by our contributors, partner companies, and sponsors"
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
       width="58"
       height="55"
+      loading="lazy"
     />
     <h2>Technology Stack</h2>
     <h4>
       Our documentation covers various modern technologies that power our infrastructure and services:
     </h4>
 
+<<<<<<< HEAD
     <!-- Tech Stack Grid -->
+=======
+    <h4>由以下团队呈现</h4>
+    <div class="voidzero">
+      <a :href="voidZero.url" target="_blank">
+        <img :src="voidZero.img" alt="VoidZero logo" loading="lazy" />
+      </a>
+    </div>
+
+    <!-- Sponsor Grid -->
+>>>>>>> e3b27dfd1161ef215ae73a97a0fd43022c357df4
     <div class="sponsor-grid">
       <VPSponsors v-if="data" :data="data" />
     </div>
@@ -103,6 +120,7 @@ const { data } = useSponsor()
       position: relative;
       display: inline-block;
       max-width: 260px;
+      filter: grayscale(1) invert(1);
     }
   }
 

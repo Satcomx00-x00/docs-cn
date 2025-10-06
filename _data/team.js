@@ -45,7 +45,7 @@ export const core = [
     avatar: 'https://github.com/bluwy.png',
     name: 'Bjorn Lu',
     title: 'Open Source Developer',
-    desc: 'Vite, Astro, and Svelte core team member.',
+    desc: 'Building tools for fun.',
     links: [
       { icon: 'github', link: 'https://github.com/bluwy' },
       { icon: 'bluesky', link: 'https://bsky.app/profile/bluwy.me' },
@@ -71,7 +71,7 @@ export const core = [
     avatar: 'https://github.com/ArnaudBarre.png',
     name: 'Arnaud Barré',
     title: 'Frontend Developer',
-    desc: 'Passionate by tooling around TypeScript and React.',
+    desc: 'Passionate about tooling around TypeScript and React.',
     links: [
       { icon: 'github', link: 'https://github.com/ArnaudBarre' },
       {
@@ -115,6 +115,12 @@ export const core = [
       { icon: 'bluesky', link: 'https://bsky.app/profile/hiogawa.bsky.social' },
     ],
     sponsor: 'https://github.com/sponsors/hi-ogawa',
+  },
+  {
+    avatar: 'https://github.com/btea.png',
+    name: 'btea',
+    title: 'Web Developer',
+    links: [{ icon: 'github', link: 'https://github.com/btea' }],
   },
 ]
 

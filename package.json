@@ -1,54 +1,42 @@
 {
-	"name": "devsecforge-docs",
+	"name": "vite-docs-cn",
 	"version": "1.0.0",
-	"description": "DevSecForge documentation - Learn DevSecOps through practical guides and examples.",
-	"repository": "https://github.com/Satcomx00-x00/docs-cn",
+	"description": "Vite.js documentation Chinese translation.",
+	"repository": "https://github.com/vitejs/docs-cn",
 	"type": "module",
-	"author": "DevSecForge Team",
+	"author": "Evan You",
 	"private": true,
 	"license": "CC BY-NC-SA 4.0",
 	"devDependencies": {
-		"@shikijs/vitepress-twoslash": "^3.9.2",
+		"@shikijs/vitepress-twoslash": "^3.13.0",
 		"@type-challenges/utils": "^0.1.1",
-		"@types/cytoscape": "^3.21.9",
 		"@types/express": "^5.0.3",
-		"@types/node": "^24.2.0",
-		"chalk": "^5.5.0",
+		"@types/node": "^20.9.2",
+		"chalk": "^4.1.2",
 		"feed": "^5.1.0",
 		"gray-matter": "^4.0.3",
 		"gsap": "^3.13.0",
-		"lighthouse": "^12.8.1",
 		"lodash": "^4.17.21",
-		"sitemap": "^8.0.0",
-		"ufo": "^1.6.1",
-		"vite": "^7.0.6",
-		"vitepress": "2.0.0-alpha.7",
+		"markdown-it-image-size": "^14.7.0",
+		"vite": "^7.0.4",
+		"vitepress": "^2.0.0-alpha.7",
 		"vitepress-plugin-group-icons": "^1.6.1",
-		"vue": "^3.5.18",
+		"vitepress-plugin-llms": "^1.7.4",
+		"vue": "^3.5.22",
+		"vue-tsc": "^3.1.0",
 		"yorkie": "^2.0.0"
 	},
-	"packageManager": "bun@1.1.38",
+	"packageManager": "pnpm@9.6.0",
 	"engines": {
 		"node": "^20.19.0 || >=22.12.0"
 	},
 	"scripts": {
-		"dev": "vitepress dev . --host 0.0.0.0 --port 5174",
-		"build": "bun scripts/generate-keywords.ts && vitepress build .",
-		"serve": "vitepress serve --host 0.0.0.0 --port 5173",
-		"fix-links": "bun run scripts/fix-deadlinks.ts",
-		"generate-keywords": "bun scripts/generate-keywords.ts"
+		"dev": "vitepress dev . --port 5174",
+		"build": "vitepress build .",
+		"typecheck": "vue-tsc",
+		"serve": "vitepress serve ."
 	},
 	"gitHooks": {
 		"commit-msg": "node scripts/verifyCommit.js"
-	},
-	"dependencies": {
-		"cytoscape": "^3.33.0",
-		"cytoscape-cola": "^2.5.1",
-		"cytoscape-cose-bilkent": "^4.1.0",
-		"cytoscape-dagre": "^2.5.0",
-		"cytoscape-euler": "^1.2.3",
-		"cytoscape-klay": "^3.1.4",
-		"vitepress-plugin-google-analytics": "^1.0.2",
-		"vitepress-plugin-mermaid": "^2.0.17"
 	}
 }
